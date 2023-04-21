@@ -1,6 +1,7 @@
 const question = require('inquirer');
 const fs = require('fs');
 const frontpage = require('./frontpage.js');
+const { log } = require('console');
 
 async function maininfor() {
     const tempmaininfor = await question.prompt([
@@ -30,44 +31,47 @@ async function maininfor() {
             name: 'numofteam',
         },
     ])
-    // tempbasicinfor =[];
-    for (let i = 1; i < Number(tempmaininfor.numofteam) + 1; i++) {
+
+    const teamMembers = [];
+
+    for (let i = 1; i <= Number(tempmaininfor.numofteam); i++) {
         const tempbasicinfor = await question.prompt([
             {
                 type: 'input',
                 message: `Enter The Name Of the ${i} employee`,
-                name: `id${i}`,
+                name: 'name',
             },
             {
                 type: 'input',
                 message: 'Enter Their Github page',
-                name: `github${i}`,
+                name: 'github',
             },
             {
                 type: 'input',
                 message: 'Enter The Email Address',
-                name: `email${i}`,
+                name: 'email',
             },
             {
                 type: 'input',
                 message: 'Enter Their Office Number',
-                name: `officenumber${i}`,
+                name: 'officeNumber',
             },
             {
                 type: 'checkbox',
                 message: 'Is Their Position Engineer or an intern',
-                name: `position${i}`,
+                name: 'position',
                 choices: ['Engineer', 'Intern'],
             },
-        ])
-        
-        const filename = `${tempmaininfor.index.toLowerCase().split(' ').join('')}.html`;
-        fs.writeFile(filename, frontpage(tempmaininfor, tempbasicinfor), (err) =>
-            err ? console.log(err) : console.log('Success!'));
+        ]);
+
+        teamMembers.push(tempbasicinfor);
     }
 
-
+    const filename = `${tempmaininfor.index.toLowerCase().split(' ').join('')}.html`;
+    fs.writeFile(filename, frontpage(tempmaininfor,teamMembers,teamMembers.length), (err) =>
+        err ? console.log(err) : console.log('Success!'));
 }
+
 maininfor();
 
 

@@ -62,3 +62,4 @@ THEN I exit the application, and the HTML is generated
 
 <h3><p align="center">Links<h3>
 Below is a link to the recorded video because there will be no deployed website
+https://drive.google.com/file/d/15HQYfb9gnHSFDc0tbS8g5GORMLsmqaaH/view
