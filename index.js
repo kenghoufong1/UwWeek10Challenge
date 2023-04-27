@@ -2,6 +2,9 @@ const question = require('inquirer');
 const fs = require('fs');
 const frontpage = require('./frontpage.js');
 const { log } = require('console');
+const { Employee,Manager,Engineer,Intern } = require('./Employee.js');
+
+
 
 async function maininfor() {
     const tempmaininfor = await question.prompt([
@@ -30,6 +33,13 @@ async function maininfor() {
             message: 'Enter The number of teammates less than or equal to 4',
             name: 'numofteam',
         },
+        // .then((results) => {
+        //     const manager = new Manager(results.mangername, results.managergithub);
+        //     const managerCard = getManagerCard(manager);
+        //     teamMembers.push(managerCard);
+
+        // })
+       
     ])
 
     const teamMembers = [];
